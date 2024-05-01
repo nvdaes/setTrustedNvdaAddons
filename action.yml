@@ -27,7 +27,7 @@ runs:
       with:
         script: |
           const fs = require('fs')
-          const contents = fs.readFileSync(${{ inputs.jsonFileWithSha256 }})
+          const contents = fs.readFileSync('${{ inputs.jsonFileWithSha256 }}')
           const metadata = JSON.parse(contents)
           const sha256 = metadata.sha256
           return sha256
@@ -37,8 +37,8 @@ runs:
       with:
         script: |
           const fs = require('fs')
-          const contents = fs.readFileSync(${{ inputs.writePath }})
+          const contents = fs.readFileSync('${{ inputs.writePath }}')
           const data = JSON.parse(contents)
           data.${{ steps.getSha256.outputs.result }} = ${{ inputs.sha256Value }}
           const stringified = JSON.stringify(data, space="\t")
-          fs.writeFileSync(${{ inputs.writePath }}, stringified)
+          fs.writeFileSync('${{ inputs.writePath }}', stringified)
