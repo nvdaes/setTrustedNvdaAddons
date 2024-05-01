@@ -18,6 +18,7 @@ inputs:
    required: true
    default: false
    type: boolean
+runs:
   using: "composite"
   steps:
     - name: Get sha256
