@@ -37,8 +37,8 @@ runs:
       with:
         script: |
           const fs = require('fs')
-          const contents = fs.readFileSync(${{ outputs.writePath }})
+          const contents = fs.readFileSync(${{ inputs.writePath }})
           const data = JSON.parse(contents)
           data.${{ steps.getSha256.outputs.result }} = ${{ inputs.sha256Value }}
           const stringified = JSON.stringify(data, space="\t")
-          fs.writeFileSync(${{ outputs.writePath }}, stringified)
+          fs.writeFileSync(${{ inputs.writePath }}, stringified)
