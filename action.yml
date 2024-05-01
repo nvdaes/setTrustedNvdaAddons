@@ -1,18 +1,18 @@
 name: 'Set trusted NVDA add-ons'
-description: 'Set add-ons consideredtrusted to be added to the store'
+description: 'Set add-ons considered trusted to be added to the store'
 inputs:
   jsonFileWithSha256:
     description: 'JSON file containing a sha256 key'
     required: true
     default: 'filename.json'
   writePath:
-    description: 'Path to a file to add a sha256 key'
+    description: 'Path to a file to add a sha256 key with an associated value'
     required: true
     default: 'writePath.json'
   branchName:
     description: 'Branch name to create a pull request'
     required: true
-    default: 'branchName.json'
+    default: 'branchName'
   sha256Value:
    description: 'Value for sha256 key'
    required: true
@@ -40,5 +40,5 @@ runs:
           const contents = fs.readFileSync('${{ inputs.writePath }}')
           const data = JSON.parse(contents)
           data[${{ steps.getSha256.outputs.result }}] = ${{ inputs.sha256Value }}
-          const stringified = JSON.stringify(data, space='  ')
+          const stringified = JSON.stringify(data, space=2)
           fs.writeFileSync('${{ inputs.writePath }}', stringified)
