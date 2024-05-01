@@ -27,7 +27,7 @@ runs:
       with:
         script: |
           const fs = require('fs')
-          const contents = fs.readFileSync(${{ outputs.filename }})
+          const contents = fs.readFileSync(${{ inputs.filename }})
           const metadata = JSON.parse(contents)
           const sha256 = metadata.sha256
           return sha256
