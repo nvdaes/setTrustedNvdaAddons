@@ -56,7 +56,7 @@ runs:
             core.setFailed('Value is already set')
           }
           data["${{ steps.getSha256.outputs.result }}"] = ${{ inputs.sha256Value }}
-          const stringified = JSON.stringify(data, space=2)
+          const stringified = JSON.stringify(data, null, 2)
           fs.writeFileSync('${{ inputs.writePath }}', stringified)
     - name: Create pull request
       id: cpr
