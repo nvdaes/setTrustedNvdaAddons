@@ -37,6 +37,7 @@ runs:
       id: getSha256
       uses: actions/github-script@v7
       with:
+        result-encoding: string
         script: |
           const fs = require('fs')
           const contents = fs.readFileSync('${{ inputs.jsonFileWithSha256 }}')
