@@ -25,11 +25,6 @@ inputs:
     description: 'Body to create a pull request'
     required: true
     default: 'Body'
-  sha256Value:
-   description: 'Value for sha256 key'
-   required: true
-   default: 'false'
-   type: string
 runs:
   using: "composite"
   steps:
@@ -52,7 +47,8 @@ runs:
           const fs = require('fs')
           const contents = fs.readFileSync('${{ inputs.writePath }}')
           const data = JSON.parse(contents)
-          data["${{ steps.getSha256 .outputs.result}}"] = Boolean(${{ inputs.sha256Value }})
+          const trustedAddons = data.trustedAddons
+          data.push("${{ steps.getSha256 .outputs.result}}")
           const stringified = JSON.stringify(data, null, 2)
           fs.writeFileSync('${{ inputs.writePath }}', stringified)
     - name: Create pull request
