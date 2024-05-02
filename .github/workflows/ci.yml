@@ -13,7 +13,6 @@ jobs:
     name: GitHub Actions Test
     runs-on: ubuntu-latest
     permissions:
-      actions: write
       contents: write
       pull-requests: write
     steps:
