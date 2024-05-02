@@ -52,6 +52,9 @@ runs:
           const fs = require('fs')
           const contents = fs.readFileSync('${{ inputs.writePath }}')
           const data = JSON.parse(contents)
+          if (data["${{ steps.getSha256.outputs.result }}"] === ${{ inputs.sha256Value }}) {
+            core.setFailed(¡Value is already set')
+          }
           data["${{ steps.getSha256.outputs.result }}"] = ${{ inputs.sha256Value }}
           const stringified = JSON.stringify(data, space=2)
           fs.writeFileSync('${{ inputs.writePath }}', stringified)
