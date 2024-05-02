@@ -1,43 +1,43 @@
 name: Continuous Integration
 
 on:
-  workflow_dispatch:
   pull_request:
     branches:
       - main
   push:
     branches:
       - main
-  inputs:
-    jsonFileWithSha256:
-      description: 'JSON file containing a sha256 key'
-      required: true
-      default: 'filename.json'
-    writePath:
-      description: 'Path to a file to add a sha256 key with an associated value'
-      required: true
-      default: 'writePath.json'
-    title:
-      description: 'Title to create a pull request'
-      required: true
-      default: 'Title'
-    branchName:
-      description: 'Branch name to create a pull request'
-      required: true
-      default: 'branchName'
-    commitMessage:
-      description: 'Commit message to create a pull request'
-      required: true
-      default: 'Commit message'
-    body:
-      description: 'Body to create a pull request'
-      required: true
-      default: 'Body'
-    sha256Value:
-     description: 'Value for sha256 key'
-     required: true
-     default: false
-     type: boolean
+  workflow_dispatch:
+    inputs:
+      jsonFileWithSha256:
+        description: 'JSON file containing a sha256 key'
+        required: true
+        default: 'filename.json'
+      writePath:
+        description: 'Path to a file to add a sha256 key with an associated value'
+        required: true
+        default: 'writePath.json'
+      title:
+        description: 'Title to create a pull request'
+        required: true
+        default: 'Title'
+      branchName:
+        description: 'Branch name to create a pull request'
+        required: true
+        default: 'branchName'
+      commitMessage:
+        description: 'Commit message to create a pull request'
+        required: true
+        default: 'Commit message'
+      body:
+        description: 'Body to create a pull request'
+        required: true
+        default: 'Body'
+      sha256Value:
+       description: 'Value for sha256 key'
+       required: true
+       default: false
+       type: boolean
 jobs:
   test-action:
     name: GitHub Actions Test
