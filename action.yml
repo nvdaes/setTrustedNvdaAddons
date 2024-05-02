@@ -9,10 +9,22 @@ inputs:
     description: 'Path to a file to add a sha256 key with an associated value'
     required: true
     default: 'writePath.json'
+  title:
+    description: 'Title to create a pull request'
+    required: true
+    default: 'Title'
   branchName:
     description: 'Branch name to create a pull request'
     required: true
     default: 'branchName'
+  commitMessage:
+    description: 'Commit message to create a pull request'
+    required: true
+    default: 'Commit message'
+  body:
+    description: 'Body to create a pull request'
+    required: true
+    default: 'Body'
   sha256Value:
    description: 'Value for sha256 key'
    required: true
@@ -42,3 +54,13 @@ runs:
           data[${{ steps.getSha256.outputs.result }}] = ${{ inputs.sha256Value }}
           const stringified = JSON.stringify(data, space=2)
           fs.writeFileSync('${{ inputs.writePath }}', stringified)
+    - name: Create pull request
+      id: cpr
+      uses: peter-evans/create-pull-request@v6
+      with:
+        title: ${{ inputs.title }}
+        branch: ${{ inputs.branchName }}
+        commit-message: ${{ inputs.commitMessage }}
+        body: ${{ inputs.body }}
+        author: github-actions <github-actions@github.com>
+        delete-branch: true
