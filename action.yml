@@ -29,7 +29,6 @@ inputs:
    description: 'Value for sha256 key'
    required: true
    default: false
-   type: boolean
 runs:
   using: "composite"
   steps:
@@ -52,7 +51,7 @@ runs:
           const fs = require('fs')
           const contents = fs.readFileSync('${{ inputs.writePath }}')
           const data = JSON.parse(contents)
-          data["${{ steps.getSha256 .outputs.result}}"] = ${{ inputs.sha256Value }}
+          data["${{ steps.getSha256 .outputs.result}}"] = toJSON(${{ inputs.sha256Value }})
           const stringified = JSON.stringify(data, null, 2)
           fs.writeFileSync('${{ inputs.writePath }}', stringified)
     - name: Create pull request
