@@ -30,9 +30,6 @@ inputs:
    required: true
    default: false
    type: boolean
-permissions:
-  contents: write 
-  pull-requests: write
 runs:
   using: "composite"
   steps:
