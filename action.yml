@@ -28,7 +28,7 @@ inputs:
   sha256Value:
    description: 'Value for sha256 key'
    required: true
-   default: false
+   default: 'false'
 runs:
   using: "composite"
   steps:
