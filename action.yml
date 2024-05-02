@@ -43,7 +43,6 @@ runs:
           const contents = fs.readFileSync('${{ inputs.jsonFileWithSha256 }}')
           const metadata = JSON.parse(contents)
           const sha256 = metadata.sha256
-          console.log(sha256)
           return sha256
     - name: Set true or false for sha256
       id: setValue
