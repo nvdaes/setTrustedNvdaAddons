@@ -48,7 +48,7 @@ runs:
           const contents = fs.readFileSync('${{ inputs.writePath }}')
           const data = JSON.parse(contents)
           const trustedAddons = data.trustedAddons
-          data.push("${{ steps.getSha256 .outputs.result}}")
+          trustedAddons.push("${{ steps.getSha256 .outputs.result}}")
           const stringified = JSON.stringify(data, null, 2)
           fs.writeFileSync('${{ inputs.writePath }}', stringified)
     - name: Create pull request
